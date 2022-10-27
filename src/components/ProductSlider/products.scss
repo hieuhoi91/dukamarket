@@ -1,0 +1,277 @@
+@keyframes showCart {
+  0% {
+    transform: translateY(10px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes showInner {
+  0% {
+    right: -46px;
+    opacity: 0.5;
+  }
+  100% {
+    right: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes unShowInner {
+  0% {
+    right: 16px;
+    opacity: 1;
+  }
+  100% {
+    right: -46px;
+    opacity: 0.5;
+  }
+}
+
+@mixin sale-label {
+  height: 20px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 3px;
+}
+
+@mixin arrow {
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #d2d2d2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+@mixin product-icon {
+  display: flex;
+  position: absolute;
+  right: -46px;
+  justify-content: center;
+  align-items: center;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background-color: #f6f6f6;
+  cursor: pointer;
+
+  .icon-inner {
+    font-size: 1rem;
+    color: rgba(169, 169, 169, 0.954);
+  }
+
+  &:hover {
+    background-color: #14a8c5;
+    transition: all 0.2s ease;
+    .icon-inner {
+      color: #fff;
+    }
+  }
+}
+
+.list-product {
+  height: 450px;
+  position: relative;
+
+  .wrap-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0 25px;
+    border-bottom: 1px solid rgb(232, 232, 232);
+
+    .title {
+      font-size: 1.6rem;
+      font-weight: 400;
+      border-bottom: 2px solid #51aedc;
+      line-height: 3rem;
+    }
+
+    .view-all {
+      a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4px;
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #9b9fa1;
+
+        .arrow-icon {
+          font-size: 0.8rem;
+          color: #9b9fa1;
+        }
+
+        &:hover {
+          color: #51aedc;
+
+          .arrow-icon {
+            color: #51aedc;
+          }
+        }
+      }
+    }
+  }
+
+  .contain {
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 80%;
+    }
+
+    .product-sale {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      .hot-product {
+        @include sale-label;
+        background-color: red;
+      }
+
+      .new-product {
+        @include sale-label;
+        background-color: rgb(66, 245, 99);
+      }
+    }
+
+    .product-discount {
+      @include sale-label;
+      background-color: rgb(63, 168, 233);
+    }
+
+    .description-product {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .product-name {
+        font-weight: 700;
+      }
+
+      .star-container {
+        padding: 0 !important;
+      }
+
+      .widget-svg {
+        height: 20px !important;
+        width: 20px !important;
+      }
+
+      .product-price {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+    }
+
+    .show-cart {
+      margin-top: 30px;
+      width: 100%;
+      height: 40px;
+      border-radius: 20px;
+      background-color: #16bcdc;
+      color: white;
+      border: none;
+      font-weight: 700;
+      font-size: 0.7rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #14a8c5;
+      }
+    }
+
+    &:hover .show-cart {
+      animation: showCart 0.5s;
+    }
+
+    &:hover {
+      .icon-eyes {
+        @include product-icon;
+        right: 0px;
+        animation: showInner 0.2s;
+      }
+
+      .icon-layer {
+        @include product-icon;
+        right: 0px;
+        animation: showInner 0.4s;
+      }
+
+      .icon-favorite {
+        @include product-icon;
+        right: 0px;
+        animation: showInner 0.6s;
+      }
+    }
+    .icon-eyes {
+      top: 10px;
+      @include product-icon;
+      animation: unShowInner 0.2s;
+    }
+
+    .icon-layer {
+      top: 45px;
+      @include product-icon;
+      animation: unShowInner 0.4s;
+    }
+
+    .icon-favorite {
+      top: 80px;
+      animation: unShowInner 0.6s;
+      @include product-icon;
+    }
+    .product-inner {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+    }
+  }
+
+  .product-arrow-left {
+    @include arrow;
+    left: -25px;
+  }
+
+  .product-arrow-right {
+    @include arrow;
+    right: -25px;
+  }
+
+  .product-arrow-left:hover,
+  .product-arrow-right:hover {
+    background-color: #16bcdc;
+    transition: all 0.3s ease;
+    .arrow-icon {
+      color: black;
+    }
+  }
+  .arrow-icon {
+    font-size: 1rem;
+    color: #fff;
+  }
+}
