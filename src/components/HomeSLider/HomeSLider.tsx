@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { FC } from 'react';
 import './homeSlider.scss';
 import {
   homeSlide as HomeSlideData,
@@ -11,15 +11,19 @@ import { Pagination, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const SlideItem = (item: IHomeSlide) => {
+interface IHomeSlider extends IHomeSlide {
+  idx: number;
+}
+
+const SlideItem: FC<{ item: IHomeSlider }> = props => {
   return (
     <div className="slider-item">
-      <img src={item.image} alt="" />
+      <img src={props.item.image} alt="" />
       <div className="slider-main">
         <div className="slider-title">
-          <h2>{item.main_label}</h2>
-          <h2>{item.label}</h2>
-          <p>{item.detail}</p>
+          <h2 className="slider-label">{props.item.main_label}</h2>
+          <h2 className="slider-label">{props.item.label}</h2>
+          <p className="slider-detail">{props.item.detail}</p>
         </div>
         <button title="discover" type="button" className="btn">
           DISCOVER NOW
@@ -33,7 +37,7 @@ interface IHighlight extends IHighlightItem {
   idx: number;
 }
 
-const Highlight: React.FC<{ item: IHighlight }> = props => {
+const Highlight: FC<{ item: IHighlight }> = props => {
   return (
     <div className="highlight-item">
       <img src={props.item.image} alt="" />
@@ -53,7 +57,6 @@ const HomeSlider = () => {
           className="swiper"
           modules={[Autoplay, Pagination]}
           spaceBetween={20}
-          navigation
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           loop={true}
@@ -63,9 +66,9 @@ const HomeSlider = () => {
           }}
           speed={800}
         >
-          {HomeSlideData.map(item => (
+          {HomeSlideData.map((item, idx) => (
             <SwiperSlide>
-              <SlideItem {...item} />
+              <SlideItem item={{ ...item, idx }} />
             </SwiperSlide>
           ))}
         </Swiper>
