@@ -1,0 +1,29 @@
+.countdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  height: 36px;
+
+  .countdown-lable {
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .countdown-timer {
+    width: 250px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    background-color: #cc1414;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  .top-deal-countdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+}

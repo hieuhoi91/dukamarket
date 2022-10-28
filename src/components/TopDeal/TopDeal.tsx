@@ -10,59 +10,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './topDeal.scss';
 import { Product as dataProduct } from '../../data/products';
-
-const CountDownTimer = ({ countdownTime }: { countdownTime: number }) => {
-  const [date, setDate] = useState(() => {
-    const d = new Date();
-    d.setDate(d.getDate() + countdownTime);
-
-    return d;
-  });
-  const [countdown, setCountdown] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  function CountDownTimer() {
-    var end = new Date(date);
-
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-
-    var now = new Date();
-    var distance = end.valueOf() - now.valueOf();
-    var days = Math.floor(distance / _day);
-    var hours = Math.floor((distance % _day) / _hour);
-    var minutes = Math.floor((distance % _hour) / _minute);
-    var seconds = Math.floor((distance % _minute) / _second);
-    const c = {
-      days,
-      hours,
-      minutes,
-      seconds,
-    };
-    setCountdown(c);
-    return c;
-  }
-
-  useEffect(() => {
-    setInterval(() => {
-      CountDownTimer();
-    }, 1000);
-  }, []);
-  return (
-    <div className="top-deal-countdown">
-      <span>{countdown?.days} Days </span>
-      <span>{countdown?.hours} Hrs </span>
-      <span>{countdown?.minutes} Mins </span>
-      <span>{countdown?.seconds} Secs </span>
-    </div>
-  );
-};
+import SectionTittle from '../SectionTitle/SectionTittle';
+import Countdown from '../Countdown/Countdown';
 
 const TopDeal = () => {
   const [swiper, setSwiper] = useState<any>();
@@ -80,35 +29,11 @@ const TopDeal = () => {
     swiper.slideNext();
   };
 
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress(oldProgress => {
-        if (oldProgress === 100) {
-          return 0;
-        }
-        const diff = Math.random() * 10;
-        return Math.min(oldProgress + diff, 100);
-      });
-    }, 500);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
-
   return (
     <div className="top-deal">
-      <div className="top-deal-title">
-        <h2>Top Deals Of The Days</h2>
-        <div className="countdown">
-          <span className="countdown-lable">Hurry Up! Offer ends in: </span>
-          <span className="countdown-timer">
-            <CountDownTimer countdownTime={72} />
-          </span>
-        </div>
-      </div>
+      <SectionTittle title={'Top Deals Of The Day'}>
+        <Countdown />
+      </SectionTittle>
       <span className="product-arrow-left" onClick={handlerPrev}>
         <ArrowBackIosNewIcon className="arrow-icon" />
       </span>
@@ -125,7 +50,7 @@ const TopDeal = () => {
         speed={800}
       >
         {dataProduct.map(item => (
-          <SwiperSlide>
+          <SwiperSlide key={item.image}>
             <div className="product-item">
               <img src={item.image} alt="" />
               <div className="product-sale">
@@ -139,8 +64,12 @@ const TopDeal = () => {
                 <p>{item.description}</p>
                 <span className="product-price">${item.price}</span>
                 <Box sx={{ width: '100%' }}>
-                  <LinearProgress variant="determinate" value={progress} />
+                  <LinearProgress variant="determinate" value={85} />
                 </Box>
+                <div className="product-quantity">
+                  <span>Sold: 85</span>
+                  <span>Available: 15</span>
+                </div>
                 <button type="button" className="add-btn">
                   Add to Cart
                 </button>

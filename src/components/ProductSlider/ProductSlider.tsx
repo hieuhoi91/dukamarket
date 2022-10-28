@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, Fragment } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Product as dataProducts, IProducts } from '../../data/products';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import StarRating from 'react-star-ratings';
@@ -9,6 +9,8 @@ import LayersIcon from '@mui/icons-material/Layers';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import './products.scss';
 import { Autoplay } from 'swiper';
+import SectionTittle from '../SectionTitle/SectionTittle';
+import ViewAllProduct from '../ViewAllProduct/ViewAllProduct';
 
 const ItemProduct: FC<IProducts> = item => {
   const [showAddToCart, setShowAddToCart] = useState<boolean>(false);
@@ -18,7 +20,7 @@ const ItemProduct: FC<IProducts> = item => {
   };
 
   return (
-    <Fragment>
+    <>
       <div
         className="contain"
         onMouseEnter={handleshowAddToCart}
@@ -54,7 +56,7 @@ const ItemProduct: FC<IProducts> = item => {
           </div>
         )}
       </div>
-    </Fragment>
+    </>
   );
 };
 
@@ -76,15 +78,9 @@ const ProductSlider = () => {
 
   return (
     <div className="list-product">
-      <div className="wrap-title">
-        <h3 className="title">Hot Trending products</h3>
-        <div className="view-all">
-          <a href="/">
-            <span>View All Products</span>
-            <ArrowForwardIosIcon className="arrow-icon" />
-          </a>
-        </div>
-      </div>
+      <SectionTittle title={'Hot Trending Products'}>
+        <ViewAllProduct title={'View All Product'} />
+      </SectionTittle>
       <span className="product-arrow-left" onClick={handlerPrev}>
         <ArrowBackIosNewIcon className="arrow-icon" />
       </span>
@@ -101,7 +97,7 @@ const ProductSlider = () => {
         className="list-product-swiper"
       >
         {dataProducts.map(item => (
-          <SwiperSlide>
+          <SwiperSlide key={item.image}>
             <ItemProduct {...item} key={item.image} />
           </SwiperSlide>
         ))}

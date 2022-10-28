@@ -1,0 +1,25 @@
+.view-all {
+  a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #9b9fa1;
+
+    .arrow-icon {
+      font-size: 0.8rem;
+      color: #9b9fa1;
+    }
+
+    &:hover {
+      color: #51aedc;
+
+      .arrow-icon {
+        color: #51aedc;
+      }
+    }
+  }
+}

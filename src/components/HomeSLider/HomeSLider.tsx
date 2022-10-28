@@ -67,7 +67,7 @@ const HomeSlider = () => {
           speed={800}
         >
           {HomeSlideData.map((item, idx) => (
-            <SwiperSlide>
+            <SwiperSlide key={item.image}>
               <SlideItem item={{ ...item, idx }} />
             </SwiperSlide>
           ))}
@@ -75,7 +75,7 @@ const HomeSlider = () => {
       </div>
       <div className="home-highlight">
         {highlightItemsData.map((item, idx) => (
-          <Highlight item={{ ...item, idx }} />
+          <Highlight key={item.image} item={{ ...item, idx }} />
         ))}
       </div>
     </div>

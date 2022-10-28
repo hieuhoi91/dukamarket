@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './Layout/Header/Header';
 import Footer from './Layout/Footer/Footer';
@@ -7,7 +7,7 @@ import Shop from '../Pages/Shop/Shop';
 
 const Layout: React.FC = () => {
   return (
-    <Fragment>
+    <>
       <Header>
         <Routes>
           <Route index element={<Home />}></Route>
@@ -15,7 +15,7 @@ const Layout: React.FC = () => {
         </Routes>
       </Header>
       <Footer />
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import { FC, useState, Fragment } from 'react';
+import { FC, useState } from 'react';
 import './header.style.scss';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -15,7 +15,7 @@ const Header: FC<HeaderProps> = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <div className="wrapper">
         <div className="header-top">
           <div className="header-logo">
@@ -108,7 +108,7 @@ const Header: FC<HeaderProps> = () => {
         </div>
       </div>
       <Outlet />
-    </Fragment>
+    </>
   );
 };
 
