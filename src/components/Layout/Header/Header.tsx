@@ -4,14 +4,21 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link, Outlet } from 'react-router-dom';
+import ShoppingCart from '../../Cart/ShoppingCart';
 
 export interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
   const [showList, setShowList] = useState(false);
+  const [showShoppingCart, setShowShoppingCart] = useState(false);
 
   const handleShowList = () => {
     setShowList(!showList);
+  };
+
+  const handleShowShoppingCart = (e: React.MouseEvent<Element, MouseEvent>) => {
+    e.preventDefault();
+    setShowShoppingCart(!showShoppingCart);
   };
 
   return (
@@ -55,13 +62,12 @@ const Header: FC<HeaderProps> = () => {
                   <span>My Wishlist</span>
                 </a>
               </li>
-              <li className="header-icon">
+              <li className="header-icon" onClick={handleShowShoppingCart}>
                 <a title="cart" href="/">
                   <img
                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAA6klEQVRYhe2WQY6CUBBEq41RZ6PbcY6knGfYG4/leB+3g4vBzXPTJEQbI4Y/ouEl5BOKVFU6P/ClgVcEyIAf4AgUfr/+r/AtzWxSh2ceVALfwJdfuT8DWKUssPeQPNBy13YpCxQesgy0T9d+UxYA4FE9wm6Y/UmatjG7QWlms0gYNYTPOgyXpCkQ+oUFJC18PViNSrQGIl3S4cLzrgJzX7vYUJXHPBKfXmDcpkB9zBENem8m0GoPVC+//x7ofYGigwKVx2tOYCgwfAfev0D4cwFKSZMOwuuczOzqUHI1AeAjQbgkTfykNdAvzjLOyyK76pp9AAAAAElFTkSuQmCC"
                     alt=""
                   />
-
                   <span>Your Cart</span>
                 </a>
               </li>
@@ -106,6 +112,12 @@ const Header: FC<HeaderProps> = () => {
             </span>
           </div>
         </div>
+        <ShoppingCart
+          className={
+            showShoppingCart ? 'right-side-cart show' : 'right-side-cart'
+          }
+          handleShowShoppingCart={handleShowShoppingCart}
+        />
       </div>
       <Outlet />
     </>

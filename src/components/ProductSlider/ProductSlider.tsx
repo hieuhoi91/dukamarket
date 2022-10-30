@@ -60,7 +60,7 @@ const ItemProduct: FC<IProducts> = item => {
   );
 };
 
-const ProductSlider = () => {
+const ProductSlider = ({ title }: { title: string }) => {
   const [swiper, setSwiper] = useState<any>();
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const ProductSlider = () => {
 
   return (
     <div className="list-product">
-      <SectionTittle title={'Hot Trending Products'}>
+      <SectionTittle title={title}>
         <ViewAllProduct title={'View All Product'} />
       </SectionTittle>
       <span className="product-arrow-left" onClick={handlerPrev}>
