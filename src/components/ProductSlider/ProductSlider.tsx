@@ -11,9 +11,13 @@ import './products.scss';
 import { Autoplay } from 'swiper';
 import SectionTittle from '../SectionTitle/SectionTittle';
 import ViewAllProduct from '../ViewAllProduct/ViewAllProduct';
+import { useAppDispatch } from '../../store/hook';
+import { addItem } from '../../Features/cartSlice';
 
 const ItemProduct: FC<IProducts> = item => {
   const [showAddToCart, setShowAddToCart] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
 
   const handleshowAddToCart = () => {
     setShowAddToCart(!showAddToCart);
@@ -49,11 +53,16 @@ const ItemProduct: FC<IProducts> = item => {
           </span>
         </div>
         {showAddToCart && (
-          <div>
-            <button title="Add" type="button" className="show-cart">
-              ADD TO CART
-            </button>
-          </div>
+          <button
+            title="Add"
+            type="button"
+            className="show-cart"
+            onClick={() => {
+              dispatch(addItem(item));
+            }}
+          >
+            ADD TO CART
+          </button>
         )}
       </div>
     </>

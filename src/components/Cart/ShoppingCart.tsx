@@ -3,6 +3,8 @@ import './shoppingCart.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import CartItem from './CartItem/CartItem';
+import { useAppSelector } from '../../store/hook';
+import { selectCart } from '../../Features/cartSlice';
 
 interface IShoppingCart {
   className: string;
@@ -13,6 +15,8 @@ const ShoppingCart: FC<IShoppingCart> = ({
   className,
   handleShowShoppingCart,
 }) => {
+  const cart = useAppSelector(selectCart);
+
   return (
     <div className={className}>
       <div className="right-shopping-cart">
@@ -25,11 +29,18 @@ const ShoppingCart: FC<IShoppingCart> = ({
           onClick={handleShowShoppingCart}
         />
       </div>
-      <div className="cart-inner">
-        <ShoppingBagOutlinedIcon className="cart-icon" />
-        <span className="title-cart-empty">Your cart is empty.</span>
-        <button className="btn-return-shop">RETURN TO SHOP</button>
-        <CartItem />
+      <div className="cart-inner cart-inner--simple">
+        {cart.length === 0 && (
+          <>
+            <ShoppingBagOutlinedIcon className="cart-icon" />
+            <span className="title-cart-empty">Your cart is empty.</span>
+            <button className="btn-return-shop">RETURN TO SHOP</button>
+          </>
+        )}
+
+        {cart.map(item => (
+          <CartItem item={{ ...item }} />
+        ))}
       </div>
       <div className="right-cart-bottom">
         <div className="subtotal">

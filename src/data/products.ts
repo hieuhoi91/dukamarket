@@ -7,6 +7,7 @@ export interface IProducts {
   image: string;
   price: number;
   star: number;
+  quantity?: number;
 }
 
 export const Product: IProducts[] = [
@@ -15,7 +16,6 @@ export const Product: IProducts[] = [
     description:
       'Designed by Hans J. Wegner in 1949 as one of the first models created especially for Carl Hansen & Son,...',
     sale: 29,
-
     isHot: true,
     image:
       'https://cdn.shopify.com/s/files/1/0606/6867/4281/products/3_99a0f0b5-de1e-4292-aeb5-656d714391bc_360x.jpg?v=1636000296',
@@ -25,11 +25,11 @@ export const Product: IProducts[] = [
   {
     description:
       'Designed by Hans J. Wegner in 1949 as one of the first models created especially for Carl Hansen & Son,...',
-    name_product: 'Somic G951 pink Gaming Headset',
+    name_product: 'Smart Watch for iOS Phones Proof',
 
     sale: 29,
     image:
-      'https://cdn.shopify.com/s/files/1/0606/6867/4281/products/34_3cacccb8-503d-493b-b962-6a34ec6e52e6_360x.jpg?v=1636009384',
+      'https://cdn.shopify.com/s/files/1/0606/6867/4281/products/9_50029331-bee5-41eb-b099-a425401a99c6_360x.jpg?v=1636002020',
     star: 5,
     price: 69.0,
   },

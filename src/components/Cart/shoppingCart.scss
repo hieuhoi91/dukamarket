@@ -94,10 +94,30 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+  overflow-y: scroll;
 
   .cart-icon {
     font-size: 8rem;
     opacity: 0.4;
+  }
+
+  &--simple::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &--simple::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  &--simple::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  &--simple::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  &--simple::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.9);
   }
 
   .title-cart-empty {
