@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IProducts } from '../data/products';
+import { ICartItem } from '../data/products';
 import { RootState } from '../store/store';
 
 export interface CartState {
-  cart: IProducts[];
+  cart: ICartItem[];
 }
 
 const initialStateCart: CartState = {
@@ -34,12 +34,36 @@ export const CartSlice = createSlice({
         item => item.image !== action.payload.image
       );
     },
-    increment: (state, action) => {},
+    increment: (state, action) => {
+      state.cart.forEach(item => {
+        if (action.payload.image === item.image) {
+          item.quantity++;
+        }
+      });
+    },
+
+    decrement: (state, action) => {
+      state.cart.forEach(item => {
+        if (action.payload.image === item.image && item.quantity > 0) {
+          item.quantity--;
+        }
+      });
+      state.cart = state.cart.filter(item => item.quantity > 0);
+    },
+
+    changeQuantity: (state, action) => {
+      state.cart.forEach(item => {
+        if (action.payload.image === item.image) {
+          item.quantity = action.payload.quantity;
+        }
+      });
+    },
   },
 });
 
 export const selectCart = (state: RootState) => state.cart.cart;
 
-export const { addItem, removeItem } = CartSlice.actions;
+export const { addItem, removeItem, increment, decrement, changeQuantity } =
+  CartSlice.actions;
 
 export default CartSlice.reducer;

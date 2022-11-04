@@ -10,6 +10,18 @@ export interface IProducts {
   quantity?: number;
 }
 
+export interface ICartItem {
+  name_product: string;
+  description: string;
+  isHot?: boolean;
+  isNew?: boolean;
+  sale: number;
+  image: string;
+  price: number;
+  star: number;
+  quantity: number;
+}
+
 export const Product: IProducts[] = [
   {
     name_product: 'Somic G951 pink Gaming Headset',

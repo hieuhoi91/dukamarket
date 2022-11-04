@@ -5,6 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link, Outlet } from 'react-router-dom';
 import ShoppingCart from '../../Cart/ShoppingCart';
+import Potal from '../../overlay/Potal';
 
 export interface HeaderProps {}
 
@@ -23,7 +24,7 @@ const Header: FC<HeaderProps> = () => {
 
   return (
     <>
-      <div className="wrapper">
+      <div className="wrapper ">
         <div className="header-top">
           <div className="header-logo">
             <Link to="/">
@@ -112,6 +113,7 @@ const Header: FC<HeaderProps> = () => {
             </span>
           </div>
         </div>
+        {showShoppingCart ? <Potal onClick={handleShowShoppingCart} /> : null}
         <ShoppingCart
           className={
             showShoppingCart ? 'right-side-cart show' : 'right-side-cart'
