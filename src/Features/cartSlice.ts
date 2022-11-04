@@ -4,10 +4,12 @@ import { RootState } from '../store/store';
 
 export interface CartState {
   cart: ICartItem[];
+  showShoppingCart: boolean;
 }
 
 const initialStateCart: CartState = {
   cart: [],
+  showShoppingCart: false,
 };
 
 export const CartSlice = createSlice({
@@ -58,12 +60,28 @@ export const CartSlice = createSlice({
         }
       });
     },
+
+    openShoppingCart: state => {
+      state.showShoppingCart = true;
+    },
+
+    closeShoppingCart: state => {
+      state.showShoppingCart = false;
+    },
   },
 });
 
 export const selectCart = (state: RootState) => state.cart.cart;
+export const selectShowCart = (state: RootState) => state.cart.showShoppingCart;
 
-export const { addItem, removeItem, increment, decrement, changeQuantity } =
-  CartSlice.actions;
+export const {
+  addItem,
+  removeItem,
+  increment,
+  decrement,
+  changeQuantity,
+  openShoppingCart,
+  closeShoppingCart,
+} = CartSlice.actions;
 
 export default CartSlice.reducer;

@@ -3,25 +3,29 @@ import './shoppingCart.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import CartItem from './CartItem/CartItem';
-import { useAppSelector } from '../../store/hook';
+import { useAppSelector, useAppDispatch } from '../../store/hook';
 import { selectCart } from '../../Features/cartSlice';
+import { closeShoppingCart } from '../../Features/cartSlice';
 
 interface IShoppingCart {
   className: string;
-  handleShowShoppingCart: (e: React.MouseEvent<Element, MouseEvent>) => void;
 }
 
-const ShoppingCart: FC<IShoppingCart> = ({
-  className,
-  handleShowShoppingCart,
-}) => {
+const ShoppingCart: FC<IShoppingCart> = ({ className }) => {
+  console.log('ShoppingCart');
+
   const cart = useAppSelector(selectCart);
+  const dispatch = useAppDispatch();
   const totalCart = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   const totalMoney = cart.reduce(
     (acc, item) => acc + item.quantity * item.price,
     0
   );
+
+  const handleShowShoppingCart = () => {
+    dispatch(closeShoppingCart());
+  };
 
   return (
     <>

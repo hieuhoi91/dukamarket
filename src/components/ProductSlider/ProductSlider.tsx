@@ -12,7 +12,7 @@ import { Autoplay } from 'swiper';
 import SectionTittle from '../SectionTitle/SectionTittle';
 import ViewAllProduct from '../ViewAllProduct/ViewAllProduct';
 import { useAppDispatch } from '../../store/hook';
-import { addItem } from '../../Features/cartSlice';
+import { addItem, openShoppingCart } from '../../Features/cartSlice';
 
 const ItemProduct: FC<IProducts> = item => {
   const [showAddToCart, setShowAddToCart] = useState<boolean>(false);
@@ -58,6 +58,7 @@ const ItemProduct: FC<IProducts> = item => {
             type="button"
             className="show-cart"
             onClick={() => {
+              dispatch(openShoppingCart());
               dispatch(addItem(item));
             }}
           >

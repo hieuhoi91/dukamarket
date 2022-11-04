@@ -6,20 +6,24 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link, Outlet } from 'react-router-dom';
 import ShoppingCart from '../../Cart/ShoppingCart';
 import Potal from '../../overlay/Potal';
+import { useAppSelector, useAppDispatch } from '../../../store/hook';
+import { selectShowCart } from '../../../Features/cartSlice';
+import { openShoppingCart } from '../../../Features/cartSlice';
 
 export interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
   const [showList, setShowList] = useState(false);
-  const [showShoppingCart, setShowShoppingCart] = useState(false);
+  const showCart = useAppSelector(selectShowCart);
+  const dispatch = useAppDispatch();
 
   const handleShowList = () => {
     setShowList(!showList);
   };
 
   const handleShowShoppingCart = (e: React.MouseEvent<Element, MouseEvent>) => {
+    dispatch(openShoppingCart());
     e.preventDefault();
-    setShowShoppingCart(!showShoppingCart);
   };
 
   return (
@@ -113,12 +117,9 @@ const Header: FC<HeaderProps> = () => {
             </span>
           </div>
         </div>
-        {showShoppingCart ? <Potal onClick={handleShowShoppingCart} /> : null}
+        {showCart ? <Potal /> : null}
         <ShoppingCart
-          className={
-            showShoppingCart ? 'right-side-cart show' : 'right-side-cart'
-          }
-          handleShowShoppingCart={handleShowShoppingCart}
+          className={showCart ? 'right-side-cart show' : 'right-side-cart'}
         />
       </div>
       <Outlet />

@@ -1,5 +1,5 @@
 import './cartItem.scss';
-import { ChangeEvent, FC, useRef } from 'react';
+import { ChangeEvent } from 'react';
 import { useAppDispatch } from '../../../store/hook';
 import { removeItem, increment, decrement } from '../../../Features/cartSlice';
 
