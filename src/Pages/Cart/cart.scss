@@ -1,0 +1,144 @@
+.cart {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.wrap-breadcrum {
+  position: relative;
+
+  h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    font-size: 3rem;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.empty-cart {
+  width: 100%;
+  height: 400px;
+  position: relative;
+
+  .empty-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  p {
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 10px 0 20px;
+    text-align: center;
+  }
+
+  .return-shop {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 800;
+    background-color: #111111;
+    padding: 10px 60px;
+    color: #fff;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: #000;
+      background-color: #fcb200;
+    }
+  }
+}
+
+.checkout-cart {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 50px 100px 50px;
+
+  th,
+  td {
+    border-collapse: collapse;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+  }
+
+  td {
+    height: 100px;
+  }
+
+  .cart-product {
+    background-color: #fff;
+    padding: 0 45px 0 15px;
+
+    .cart-table {
+      width: 100%;
+      height: 100%;
+
+      .cart-empty {
+        height: 100%;
+      }
+
+      .cart-content-product,
+      .cart-content-price,
+      .cart-content-quantity,
+      .cart-content-total {
+        padding: 15px;
+        font-size: 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .cart-itemm {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+
+        img {
+          width: 70px;
+          height: 70px;
+        }
+
+        h3 {
+          font-size: 0.9rem;
+          color: #277fd0;
+        }
+      }
+
+      .cart-item-price,
+      .cart-item-quantity,
+      .cart-item-total {
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 15px;
+      }
+
+      .product-cart-item {
+        height: 20px;
+      }
+
+      .close-icon-cart {
+        height: 100%;
+        padding: 15px;
+
+        .close-icon {
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            color: #fcb200;
+          }
+        }
+      }
+    }
+  }
+
+  .cart-total {
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    padding: 36px;
+  }
+}

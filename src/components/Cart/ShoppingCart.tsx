@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import './shoppingCart.scss';
+import { Link } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import CartItem from './CartItem/CartItem';
@@ -12,8 +13,6 @@ interface IShoppingCart {
 }
 
 const ShoppingCart: FC<IShoppingCart> = ({ className }) => {
-  console.log('ShoppingCart');
-
   const cart = useAppSelector(selectCart);
   const dispatch = useAppDispatch();
   const totalCart = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -58,8 +57,20 @@ const ShoppingCart: FC<IShoppingCart> = ({ className }) => {
             <h4>TOTAL</h4>
             <span className="total-price">${totalMoney}</span>
           </div>
-          <button className="btn-view-cart">VIEW CART</button>
-          <button className="btn-check">CHECK OUT</button>
+          <Link
+            to="/cart"
+            onClick={handleShowShoppingCart}
+            className="btn-view-cart"
+          >
+            VIEW CART
+          </Link>
+          <Link
+            to="/cart"
+            onClick={handleShowShoppingCart}
+            className="btn-check"
+          >
+            CHECK OUT
+          </Link>
         </div>
       </div>
     </>

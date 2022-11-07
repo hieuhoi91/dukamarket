@@ -4,6 +4,7 @@ import Header from './components/Layout/Header/Header';
 import Footer from './components/Layout/Footer/Footer';
 import Home from './Pages/Home/Home';
 import Shop from './Pages/Shop/Shop';
+import Cart from './Pages/Cart/Cart';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </div>

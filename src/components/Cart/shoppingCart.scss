@@ -17,11 +17,15 @@
 }
 
 @mixin btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   width: 100%;
   height: 45px;
   border-radius: 30px;
   border: none;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 700;
   transition: all 0.2s ease-in;
   cursor: pointer;
@@ -168,6 +172,7 @@
     @include btn;
     border: 1px solid#ebebeb;
     background-color: #f6f6f6;
+    color: #000;
 
     &:hover {
       background-color: #16bcdc;
