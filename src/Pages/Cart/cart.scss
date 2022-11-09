@@ -1,3 +1,12 @@
+@mixin space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 .cart {
   width: 100%;
   height: 100%;
@@ -75,7 +84,6 @@
 
     .cart-table {
       width: 100%;
-      height: 100%;
 
       .cart-empty {
         height: 100%;
@@ -93,10 +101,9 @@
       }
 
       .cart-itemm {
-        height: 100%;
         display: flex;
         align-items: center;
-        box-sizing: border-box;
+        padding: 15px;
 
         img {
           width: 70px;
@@ -140,5 +147,48 @@
     background-color: #f6f6f6;
     border-radius: 10px;
     padding: 36px;
+
+    h2 {
+      font-size: 1.6rem;
+    }
+
+    .cart-total-flex {
+      @include space-between;
+      padding: 0 0 20px;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    .cart-total-address,
+    .cart-total-coupon {
+      @include space-between;
+
+      .cart-total-arrow {
+        cursor: pointer;
+      }
+
+      input {
+        height: 50px;
+        outline: none;
+        border: 1px solid #efefef;
+        box-sizing: border-box;
+        color: #b6b6b6;
+        padding: 0 20px;
+
+        &::placeholder {
+          color: #b6b6b6;
+        }
+      }
+    }
+
+    .btn-checkout {
+      width: 100%;
+      height: 50px;
+      background-color: #fcbe00;
+      outline: none;
+      border: none;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
   }
 }

@@ -4,10 +4,16 @@ import { useAppSelector, useAppDispatch } from '../../store/hook';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import { removeItem } from '../../Features/cartSlice';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const Cart = () => {
   const cart = useAppSelector(selectCart);
   const dispatch = useAppDispatch();
+
+  const totalMoney = cart.reduce(
+    (acc, item) => acc + item.quantity * item.price,
+    0
+  );
 
   const totalMoneyCart = cart.forEach(item => {
     let total: number;
@@ -15,11 +21,6 @@ const Cart = () => {
     console.log(total);
     return total;
   });
-
-  const subTotal = cart.reduce(
-    (total, item) => total + item.quantity * item.price,
-    0
-  );
 
   return (
     <div className="cart">
@@ -72,30 +73,36 @@ const Cart = () => {
                   </td>
                   <td className="cart-item-price">${item.price}</td>
                   <td className="cart-item-quantity">{item.quantity}</td>
-                  <td className="cart-item-total">$a.00</td>
+                  <td className="cart-item-total">${totalMoney}</td>
                 </tr>
               ))}
             </table>
           </div>
           <div className="cart-total">
             <h2>Cart totals</h2>
-            <div>
+            <div className="cart-total-flex">
               <span>Subtotal</span>
-              <span>{subTotal}</span>
+              <span>${totalMoney}</span>
             </div>
-            <div>
+            <div className="cart-total-flex">
               <span>Total</span>
-              <span>{subTotal}</span>
+              <span>${totalMoney}</span>
             </div>
-            <div>
+            <div className="cart-total-flex">
               <span>Shipping</span>
               <span>Free</span>
             </div>
-            <div>
-              <div>
-                <span>Change Address</span>
-              </div>
+            <div className="cart-total-address">
+              <span>Change Address</span>
+              <span className="cart-total-arrow">
+                <KeyboardArrowDownIcon />
+              </span>
             </div>
+            <div className="cart-total-coupon">
+              <span>Coupon</span>
+              <input type="text" placeholder="Coupon code" />
+            </div>
+            <button className="btn-checkout">CHECK OUT</button>
           </div>
         </div>
       )}
