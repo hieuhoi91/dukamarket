@@ -15,13 +15,6 @@ const Cart = () => {
     0
   );
 
-  const totalMoneyCart = cart.forEach(item => {
-    let total: number;
-    total = item.quantity * item.price;
-    console.log(total);
-    return total;
-  });
-
   return (
     <div className="cart">
       <div className="wrap-breadcrum">
@@ -73,7 +66,9 @@ const Cart = () => {
                   </td>
                   <td className="cart-item-price">${item.price}</td>
                   <td className="cart-item-quantity">{item.quantity}</td>
-                  <td className="cart-item-total">${totalMoney}</td>
+                  <td className="cart-item-total">
+                    ${item.price * item.quantity}
+                  </td>
                 </tr>
               ))}
             </table>

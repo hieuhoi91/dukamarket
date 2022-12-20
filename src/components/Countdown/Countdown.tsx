@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './countdown.scss';
 
 const CountDownTimer = ({ countdownTime }: { countdownTime: number }) => {
-  const [date, setDate] = useState(() => {
+  const [date] = useState(() => {
     const d = new Date();
     d.setDate(d.getDate() + countdownTime);
 
@@ -14,7 +14,6 @@ const CountDownTimer = ({ countdownTime }: { countdownTime: number }) => {
     minutes: 0,
     seconds: 0,
   });
-
   function CountDownTimer() {
     var end = new Date(date);
 
@@ -43,7 +42,9 @@ const CountDownTimer = ({ countdownTime }: { countdownTime: number }) => {
     setInterval(() => {
       CountDownTimer();
     }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div className="top-deal-countdown">
       <span>{countdown?.days} Days </span>
